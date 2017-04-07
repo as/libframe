@@ -105,6 +105,19 @@ func stringwidth(ft Font, s string) int {
 }
 
 func (f *Frame) ChopFrame(pt image.Point, p int64, bn int) {
-	panic("ChopFrame")
-
+	bn, nbox := 0, f.nbox
+	for ; bn < f.nbox; bn++ {
+		b := &f.box[bn]
+		pt := f.LineWrap(pt, b)
+		if pt.Y >= f.r.Max.Y {
+			break
+		}
+		p += int64(NRUNE(b))
+		pt = f.Advance(pt, b)
+	}
+	f.nchars = p
+	f.nlines = f.maxlines
+	if bn < nbox {
+		f.Delete(bn, f.nbox-1)
+	}
 }
