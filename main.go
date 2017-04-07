@@ -145,12 +145,6 @@ func main() {
 				if e.Direction == key.DirRelease {
 					continue
 				}
-				if e.Rune == 'M' {
-					fr.Insert("Mink", fr.p0)
-					fr.p1 += int64(len("Mink"))
-					win.Send(paint.Event{})
-					continue
-				}
 				if e.Rune == '\r' {
 					e.Rune = '\n'
 				}
@@ -168,7 +162,7 @@ func main() {
 					continue
 				}
 				if e.Rune == '\x08' {
-					if fr.p1 == fr.p0 {
+					if fr.p1 == fr.p0 && fr.p1 != 0 {
 						fr.p0--
 					}
 					fr.DeleteBytes(fr.p0, fr.p1)
@@ -180,9 +174,12 @@ func main() {
 				if e.Rune == -1 {
 					continue
 				}
+				if fr.p0 != fr.p1{
+					fr.DeleteBytes(fr.p0, fr.p1)
+				}
 				fr.Insert(string(e.Rune), fr.p1)
 				fr.p0 = fr.p1
-				win.SendFirst(paint.Event{})
+				win.Send(paint.Event{})
 			case size.Event:
 				fr.Redraw()
 				paintfn()

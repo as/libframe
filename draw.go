@@ -12,7 +12,7 @@ func (f *Frame) tickat(pt image.Point, ticked bool) {
 	if f.ticked == ticked || f.tick == nil || !pt.In(f.r) {
 		return
 	}
-	pt.X--
+	//pt.X--
 	r := image.Rect(pt.X, pt.Y, pt.X+FRTICKW, pt.Y+f.font.height)
 	if r.Max.X > f.r.Max.X {
 		r.Max.X = f.r.Max.X

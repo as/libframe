@@ -55,13 +55,14 @@ func NewFrame(r image.Rectangle, ft Font, b draw.Image, cols []image.Image) *Fra
 	return f
 }
 
-const FRTICKW = 3
+const FRTICKW = 4
 
 func (f *Frame) inittick() {
 	f.tickscale = 1 // TODO implement scalesize
 	f.tick = image.NewRGBA(image.Rect(0, 0, FRTICKW, f.font.height))
 	f.tickback = image.NewRGBA(image.Rect(0, 0, FRTICKW, f.font.height))
 	Draw(f.tick, f.tick.Bounds(), f.cols[TEXT], image.ZP)
+	Draw(f.tick, f.tick.Bounds().Inset(1), f.cols[HIGH], image.ZP)
 }
 
 func (f *Frame) setrects(r image.Rectangle, b draw.Image) {

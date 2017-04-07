@@ -100,7 +100,7 @@ func (f *Frame) DeleteBytes(p0, p1 int64) int {
 	if pt1.Y != pt0.Y {
 		pt2 := f.PtOfCharPtBox(32767, pt1, n1)
 		if pt2.Y > f.r.Max.Y {
-			panic("delete: PtOfCharPtBox")
+			//panic("delete: PtOfCharPtBox")
 		}
 		if n1 < f.nbox {
 			h := f.font.height
