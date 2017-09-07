@@ -1,9 +1,6 @@
-# libframe
-plan9's libframe text widgets in go
+# DEPRECATED
 
-This implementation is null-friendly
+Do not use this repository
 
-# todo
-```[ ] runes
-[ ] proper go interfaces (reader/writer/seeker)
-[ ] proper packaging
+See github.com/as/frame
+
